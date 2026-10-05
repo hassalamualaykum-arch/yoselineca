@@ -1,6 +1,6 @@
 # Bloquear acceso web a archivos de git y del repositorio
 RedirectMatch 404 /\.git
-<FilesMatch "^(README\.md|deploy\.sh|\.gitignore)$">
+<FilesMatch "^(README\.md|\.gitignore)$">
   Require all denied
 </FilesMatch>
 

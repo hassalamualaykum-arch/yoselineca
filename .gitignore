@@ -4,3 +4,6 @@ Thumbs.db
 .idea/
 *.log
 .env
+
+# Script de despliegue local (no publicar)
+deploy.sh
