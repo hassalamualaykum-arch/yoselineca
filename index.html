@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yoseline Aparicio Canizalez | Bienes Raíces</title>
+  <meta name="description" content="Yoseline Aparicio Canizalez, asesora en bienes raíces. Compra y venta de casas con asesoría personalizada. Nuestro sitio estará disponible muy pronto.">
+  <meta name="theme-color" content="#32141e">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --vino:    #32141e;
+      --ciruela: #4a2336;
+      --crema:   #e1dcc8;
+      --bosque:  #2d3c29;
+      --noche:   #14231e;
+      --crema-70: rgba(225, 220, 200, .7);
+      --crema-35: rgba(225, 220, 200, .35);
+      --crema-12: rgba(225, 220, 200, .12);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Montserrat', system-ui, sans-serif;
+      --ancho: 1180px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--vino);
+      color: var(--crema);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    /* Textura de grano sobre todo el sitio */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      opacity: .07;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    a { color: inherit; text-decoration: none; }
+    .contenedor { width: 100%; max-width: var(--ancho); margin: 0 auto; padding: 0 24px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .38em;
+      text-transform: uppercase;
+      color: var(--crema-70);
+    }
+    .eyebrow::before { content: ''; width: 36px; height: 1px; background: currentColor; }
+    em { font-style: italic; font-weight: 300; }
+
+    /* ---------- Encabezado ---------- */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      transition: background .4s, backdrop-filter .4s, padding .4s;
+      padding: 22px 0;
+    }
+    header.fijo {
+      background: rgba(50, 20, 30, .82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--crema-12);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .marca { display: flex; align-items: center; gap: 14px; }
+    .marca svg { width: 42px; height: 42px; flex: none; }
+    .marca-texto { line-height: 1.1; }
+    .marca-texto strong { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.3rem; letter-spacing: .02em; }
+    .marca-texto span { font-size: .6rem; letter-spacing: .32em; text-transform: uppercase; color: var(--crema-70); }
+    .enlaces { display: flex; align-items: center; gap: 36px; list-style: none; font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; }
+    .enlaces a:not(.boton) { position: relative; padding: 6px 0; opacity: .85; transition: opacity .3s; }
+    .enlaces a:not(.boton)::after {
+      content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px;
+      background: var(--crema); transform: scaleX(0); transform-origin: right; transition: transform .4s;
+    }
+    .enlaces a:not(.boton):hover { opacity: 1; }
+    .enlaces a:not(.boton):hover::after { transform: scaleX(1); transform-origin: left; }
+
+    .boton {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 15px 30px;
+      border-radius: 999px;
+      font-size: .72rem; font-weight: 500;
+      letter-spacing: .22em; text-transform: uppercase;
+      transition: background .35s, color .35s, transform .35s, border-color .35s;
+    }
+    .boton svg { width: 16px; height: 16px; transition: transform .35s; }
+    .boton:hover svg { transform: translateX(4px); }
+    .boton-claro { background: var(--crema); color: var(--vino); }
+    .boton-claro:hover { background: #f1ecd9; transform: translateY(-2px); }
+    .boton-linea { border: 1px solid var(--crema-35); }
+    .boton-linea:hover { border-color: var(--crema); background: var(--crema-12); }
+    .enlaces .boton { padding: 11px 22px; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 140px 0 100px;
+      background:
+        radial-gradient(ellipse 70% 60% at 10% 0%, var(--ciruela) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 70% at 100% 100%, var(--bosque) 0%, transparent 65%),
+        var(--vino);
+      overflow: hidden;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 64px; align-items: center; }
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2.8rem, 6.4vw, 5.6rem);
+      line-height: 1.02;
+      letter-spacing: -.01em;
+      margin: 28px 0 28px;
+    }
+    .hero h1 em { color: #f3ead2; }
+    .hero p.intro { max-width: 470px; font-size: 1.02rem; color: var(--crema-70); }
+    .acciones { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 44px; }
+    .datos { display: flex; gap: 44px; margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--crema-12); max-width: 520px; }
+    .dato strong { display: block; font-family: var(--serif); font-size: 2rem; font-weight: 400; line-height: 1; }
+    .dato span { font-size: .66rem; letter-spacing: .25em; text-transform: uppercase; color: var(--crema-70); }
+
+    /* Marco en arco con ilustración */
+    .arco-wrap { position: relative; justify-self: center; width: 100%; max-width: 440px; }
+    .arco {
+      position: relative;
+      aspect-ratio: 4 / 5.2;
+      border-radius: 999px 999px 18px 18px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #5a2c42 0%, var(--ciruela) 38%, var(--bosque) 100%);
+      box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .6), inset 0 0 0 1px var(--crema-12);
+    }
+    .arco::before {
+      content: ''; position: absolute; inset: 14px;
+      border-radius: 999px 999px 10px 10px;
+      border: 1px solid var(--crema-35);
+      z-index: 2; pointer-events: none;
+    }
+    .arco svg.escena { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .arco-borde {
+      position: absolute; inset: -22px -22px auto auto;
+      width: 100%; aspect-ratio: 4 / 5.2;
+      border-radius: 999px 999px 18px 18px;
+      border: 1px solid var(--crema-35);
+      z-index: -1;
+    }
+    .insignia {
+      position: absolute;
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 20px 14px 14px;
+      background: rgba(225, 220, 200, .96);
+      color: var(--vino);
+      border-radius: 14px;
+      box-shadow: 0 20px 40px -18px rgba(0, 0, 0, .55);
+      font-size: .78rem; font-weight: 500;
+      animation: flotar 6s ease-in-out infinite;
+    }
+    .insignia small { display: block; font-size: .62rem; font-weight: 400; letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
+    .insignia .icono { width: 38px; height: 38px; border-radius: 10px; background: var(--vino); color: var(--crema); display: grid; place-items: center; flex: none; }
+    .insignia .icono svg { width: 20px; height: 20px; }
+    .insignia.uno { left: -48px; bottom: 18%; }
+    .insignia.dos { right: -30px; top: 16%; animation-delay: -3s; }
+    .sello {
+      position: absolute; right: -46px; bottom: -40px;
+      width: 132px; height: 132px;
+      animation: girar 28s linear infinite;
+    }
+
+    .scroll-indicador {
+      position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      font-size: .6rem; letter-spacing: .3em; text-transform: uppercase; color: var(--crema-70);
+    }
+    .scroll-indicador span { width: 1px; height: 44px; background: linear-gradient(var(--crema), transparent); animation: bajar 2.2s ease-in-out infinite; transform-origin: top; }
+
+    /* ---------- Cinta ---------- */
+    .cinta { background: var(--crema); color: var(--vino); overflow: hidden; padding: 22px 0; }
+    .cinta-pista { display: flex; width: max-content; animation: desplazar 38s linear infinite; }
+    .cinta-pista span {
+      display: inline-flex; align-items: center; gap: 40px; padding-right: 40px;
+      font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2rem); font-style: italic; white-space: nowrap;
+    }
+    .cinta-pista span::after { content: '✦'; font-style: normal; font-size: .8em; color: var(--ciruela); }
+
+    /* ---------- Secciones ---------- */
+    section.bloque { padding: 130px 0; position: relative; }
+    .titulo-seccion { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 70px; flex-wrap: wrap; }
+    .titulo-seccion h2 {
+      font-family: var(--serif); font-weight: 300;
+      font-size: clamp(2.2rem, 4.6vw, 3.8rem); line-height: 1.05;
+      margin-top: 20px; max-width: 640px;
+    }
+    .titulo-seccion p { max-width: 360px; color: var(--crema-70); font-size: .95rem; }
+
+    /* Servicios */
+    .servicios { background: var(--vino); }
+    .tarjetas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .tarjeta {
+      position: relative;
+      padding: 48px 38px 44px;
+      border: 1px solid var(--crema-12);
+      border-radius: 22px;
+      background: linear-gradient(160deg, rgba(74, 35, 54, .55), rgba(50, 20, 30, .2));
+      overflow: hidden;
+      transition: transform .5s, border-color .5s;
+    }
+    .tarjeta::before {
+      content: ''; position: absolute; inset: auto -40% -60% auto;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(225, 220, 200, .14), transparent 70%);
+      transition: transform .6s;
+    }
+    .tarjeta:hover { transform: translateY(-8px); border-color: var(--crema-35); }
+    .tarjeta:hover::before { transform: scale(1.4); }
+    .tarjeta .num { position: absolute; top: 34px; right: 36px; font-family: var(--serif); font-size: 1rem; color: var(--crema-35); }
+    .tarjeta .ico {
+      width: 64px; height: 64px; border-radius: 50%;
+      border: 1px solid var(--crema-35);
+      display: grid; place-items: center; margin-bottom: 36px;
+    }
+    .tarjeta .ico svg { width: 28px; height: 28px; }
+    .tarjeta h3 { font-family: var(--serif); font-weight: 400; font-size: 1.9rem; line-height: 1.1; margin-bottom: 16px; }
+    .tarjeta p { font-size: .92rem; color: var(--crema-70); }
+    .tarjeta ul { list-style: none; margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--crema-12); font-size: .8rem; letter-spacing: .04em; }
+    .tarjeta li { display: flex; gap: 12px; padding: 5px 0; }
+    .tarjeta li::before { content: '—'; color: var(--crema-35); }
+
+    /* Proceso */
+    .proceso {
+      background:
+        radial-gradient(ellipse 60% 80% at 0% 50%, rgba(45, 60, 41, .9), transparent 70%),
+        var(--noche);
+    }
+    .pasos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; counter-reset: paso; }
+    .pasos::before { content: ''; position: absolute; top: 30px; left: 30px; right: 30px; height: 1px; background: var(--crema-35); }
+    .paso { position: relative; padding-right: 28px; }
+    .paso .circulo {
+      position: relative; width: 60px; height: 60px; border-radius: 50%;
+      background: var(--noche); border: 1px solid var(--crema);
+      display: grid; place-items: center;
+      font-family: var(--serif); font-size: 1.4rem; font-style: italic;
+      margin-bottom: 34px;
+      transition: background .4s, color .4s;
+    }
+    .paso:hover .circulo { background: var(--crema); color: var(--noche); }
+    .paso h3 { font-family: var(--serif); font-weight: 400; font-size: 1.55rem; margin-bottom: 12px; }
+    .paso p { font-size: .88rem; color: var(--crema-70); }
+
+    /* Frase */
+    .frase { background: var(--crema); color: var(--vino); text-align: center; padding: 130px 0; overflow: hidden; }
+    .frase .comillas { font-family: var(--serif); font-size: 7rem; line-height: .5; color: var(--ciruela); opacity: .35; display: block; margin-bottom: 20px; }
+    .frase blockquote {
+      font-family: var(--serif); font-weight: 300;
+      font-size: clamp(1.8rem, 4.2vw, 3.3rem); line-height: 1.2;
+      max-width: 900px; margin: 0 auto;
+    }
+    .frase blockquote em { color: var(--ciruela); }
+    .frase cite { display: block; margin-top: 36px; font-style: normal; font-size: .7rem; font-weight: 500; letter-spacing: .38em; text-transform: uppercase; color: var(--ciruela); }
+    .frase .firma { width: 70px; height: 70px; margin: 0 auto 28px; display: block; }
+
+    /* Próximamente */
+    .proximamente {
+      background:
+        radial-gradient(ellipse 60% 70% at 100% 0%, var(--ciruela), transparent 70%),
+        var(--vino);
+    }
+    .aviso {
+      position: relative;
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: 60px; align-items: center;
+      padding: 72px 64px;
+      border-radius: 28px;
+      border: 1px solid var(--crema-35);
+      background: rgba(20, 35, 30, .35);
+      overflow: hidden;
+    }
+    .aviso::after {
+      content: ''; position: absolute; right: -120px; top: -120px;
+      width: 340px; height: 340px; border-radius: 50%;
+      border: 1px solid var(--crema-12);
+      box-shadow: 0 0 0 40px rgba(225, 220, 200, .03), 0 0 0 80px rgba(225, 220, 200, .02);
+    }
+    .aviso h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.08; margin: 20px 0 20px; }
+    .aviso p { color: var(--crema-70); max-width: 460px; }
+    .estado {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 10px 20px; margin-top: 32px;
+      border: 1px solid var(--crema-35); border-radius: 999px;
+      font-size: .68rem; letter-spacing: .24em; text-transform: uppercase;
+    }
+    .estado::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #9fc28f; box-shadow: 0 0 0 0 rgba(159, 194, 143, .6); animation: latido 2s infinite; }
+    .progreso { position: relative; z-index: 1; }
+    .progreso .fila { display: flex; justify-content: space-between; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 12px; color: var(--crema-70); }
+    .barra { height: 4px; border-radius: 4px; background: var(--crema-12); overflow: hidden; margin-bottom: 30px; }
+    .barra i { display: block; height: 100%; width: 0; border-radius: 4px; background: linear-gradient(90deg, var(--crema-35), var(--crema)); transition: width 1.8s cubic-bezier(.2, .8, .2, 1); }
+    .visible .barra i { width: var(--p); }
+
+    /* Pie */
+    footer { background: var(--noche); padding: 70px 0 34px; font-size: .78rem; }
+    .pie { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; padding-bottom: 50px; border-bottom: 1px solid var(--crema-12); }
+    .pie .lema { font-family: var(--serif); font-size: 1.6rem; font-style: italic; max-width: 360px; line-height: 1.25; }
+    .pie nav { display: flex; gap: 32px; letter-spacing: .2em; text-transform: uppercase; font-size: .68rem; }
+    .pie nav a { opacity: .75; transition: opacity .3s; }
+    .pie nav a:hover { opacity: 1; }
+    .legal { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-top: 28px; color: var(--crema-70); font-size: .68rem; letter-spacing: .1em; }
+
+    /* Animaciones */
+    .revelar { opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(.2, .8, .2, 1), transform 1s cubic-bezier(.2, .8, .2, 1); }
+    .revelar.visible { opacity: 1; transform: none; }
+    .retraso-1 { transition-delay: .12s; }
+    .retraso-2 { transition-delay: .24s; }
+    .retraso-3 { transition-delay: .36s; }
+    @keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    @keyframes girar { to { transform: rotate(360deg); } }
+    @keyframes desplazar { to { transform: translateX(-50%); } }
+    @keyframes bajar { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(0); transform-origin: bottom; } }
+    @keyframes latido { 0% { box-shadow: 0 0 0 0 rgba(159, 194, 143, .6); } 70% { box-shadow: 0 0 0 10px rgba(159, 194, 143, 0); } 100% { box-shadow: 0 0 0 0 rgba(159, 194, 143, 0); } }
+    @keyframes dibujar { to { stroke-dashoffset: 0; } }
+    .trazo { stroke-dasharray: 600; stroke-dashoffset: 600; animation: dibujar 3s .4s ease-out forwards; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 80px; }
+      .arco-wrap { max-width: 360px; }
+      .tarjetas { grid-template-columns: 1fr; max-width: 560px; }
+      .pasos { grid-template-columns: 1fr 1fr; gap: 50px 0; }
+      .pasos::before { display: none; }
+      .aviso { grid-template-columns: 1fr; padding: 56px 40px; gap: 44px; }
+      .enlaces li:not(:last-child) { display: none; }
+    }
+    @media (max-width: 600px) {
+      .contenedor { padding: 0 16px; }
+      header { padding: 16px 0; }
+      .marca svg { width: 36px; height: 36px; }
+      .marca-texto strong { font-size: 1.1rem; }
+      .marca-texto span { display: none; }
+      .enlaces .boton { padding: 10px 16px; font-size: .62rem; letter-spacing: .16em; }
+      .hero { padding: 120px 0 110px; }
+      .datos { gap: 26px; }
+      .dato strong { font-size: 1.6rem; }
+      .arco-wrap { max-width: 290px; }
+      .insignia { font-size: .7rem; padding: 10px 14px 10px 10px; }
+      .insignia .icono { width: 32px; height: 32px; }
+      .insignia.uno { left: -16px; }
+      .insignia.dos { right: -12px; }
+      .sello { width: 100px; height: 100px; right: -14px; bottom: -36px; }
+      .arco-borde { inset: -12px -12px auto auto; }
+      section.bloque, .frase { padding: 90px 0; }
+      .tarjeta { padding: 40px 28px 36px; }
+      .pasos { grid-template-columns: 1fr; gap: 40px; }
+      .aviso { padding: 44px 24px; }
+      .boton { padding: 14px 24px; }
+      .scroll-indicador { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+      .revelar { opacity: 1; transform: none; }
+      .trazo { stroke-dashoffset: 0; }
+      .barra i { width: var(--p); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo reutilizable -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="logo" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M14 46 L50 12 L62 30"/>
+        <path d="M62 30 L72 20 L88 80"/>
+        <path d="M14 46 L22 84"/>
+        <path d="M14 46 Q32 44 38 62 L40 84"/>
+        <path d="M38 62 Q44 48 52 60 L54 82"/>
+        <path d="M52 60 Q58 42 66 46 L70 80"/>
+        <path d="M62 30 L78 80"/>
+        <path d="M8 86 L94 78"/>
+      </g>
+    </symbol>
+    <symbol id="flecha" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <header id="cabecera">
+    <div class="contenedor nav">
+      <a href="#inicio" class="marca" aria-label="Inicio">
+        <svg><use href="#logo"/></svg>
+        <div class="marca-texto">
+          <strong>Yoseline Aparicio</strong>
+          <span>Bienes Raíces</span>
+        </div>
+      </a>
+      <ul class="enlaces">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#proximamente">Novedades</a></li>
+        <li><a href="#proximamente" class="boton boton-claro">Próximamente</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="contenedor hero-grid">
+        <div>
+          <span class="eyebrow revelar">Compra &amp; Venta de Casas</span>
+          <h1 class="revelar retraso-1">Tu próximo <em>hogar</em> empieza con una <em>buena asesoría.</em></h1>
+          <p class="intro revelar retraso-2">
+            Soy Yoseline Aparicio Canizalez. Te acompaño en cada paso para comprar o vender
+            tu casa con claridad, seguridad y un trato cercano.
+          </p>
+          <div class="acciones revelar retraso-3">
+            <a href="#servicios" class="boton boton-claro">Conocer servicios <svg><use href="#flecha"/></svg></a>
+            <a href="#proceso" class="boton boton-linea">Cómo trabajo</a>
+          </div>
+          <div class="datos revelar retraso-3">
+            <div class="dato"><strong>Compra</strong><span>Encuentra tu casa</span></div>
+            <div class="dato"><strong>Venta</strong><span>Vende mejor</span></div>
+            <div class="dato"><strong>1 a 1</strong><span>Atención personal</span></div>
+          </div>
+        </div>
+
+        <div class="arco-wrap revelar retraso-2">
+          <div class="arco-borde"></div>
+          <div class="arco">
+            <svg class="escena" viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs>
+                <linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#6b3550"/>
+                  <stop offset=".55" stop-color="#4a2336"/>
+                  <stop offset="1" stop-color="#2d3c29"/>
+                </linearGradient>
+                <radialGradient id="sol" cx=".5" cy=".5" r=".5">
+                  <stop offset="0" stop-color="#f3ead2" stop-opacity=".95"/>
+                  <stop offset=".6" stop-color="#e1dcc8" stop-opacity=".35"/>
+                  <stop offset="1" stop-color="#e1dcc8" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <rect width="400" height="520" fill="url(#cielo)"/>
+              <circle cx="270" cy="170" r="110" fill="url(#sol)"/>
+              <circle cx="270" cy="170" r="38" fill="#efe6cc"/>
+              <!-- colinas -->
+              <path d="M0 360 Q100 300 200 340 T400 320 V520 H0Z" fill="#3a2a30" opacity=".75"/>
+              <path d="M0 400 Q120 360 230 395 T400 380 V520 H0Z" fill="#2d3c29"/>
+              <path d="M0 450 Q150 420 280 445 T400 440 V520 H0Z" fill="#14231e"/>
+              <!-- casa en línea -->
+              <g fill="none" stroke="#e1dcc8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+                <path class="trazo" d="M110 410 V300 L190 236 L270 300 V410"/>
+                <path class="trazo" d="M92 314 L190 228 L288 314"/>
+                <path class="trazo" d="M168 410 V352 H212 V410"/>
+                <path class="trazo" d="M128 326 H158 V356 H128Z M143 326 V356 M128 341 H158"/>
+                <path class="trazo" d="M222 326 H252 V356 H222Z M237 326 V356 M222 341 H252"/>
+                <path class="trazo" d="M180 290 a10 10 0 0 1 20 0 v12 h-20Z"/>
+                <path class="trazo" d="M240 268 V240 H256 V282"/>
+                <path class="trazo" d="M60 412 H340"/>
+              </g>
+              <!-- árboles -->
+              <g fill="#14231e" opacity=".9">
+                <path d="M54 412 V380 M54 330 C30 360 34 392 54 392 C74 392 78 360 54 330Z" stroke="#14231e" stroke-width="3"/>
+                <path d="M330 412 V388 M330 350 C312 372 315 398 330 398 C345 398 348 372 330 350Z" stroke="#14231e" stroke-width="3"/>
+              </g>
+              <!-- aves -->
+              <g fill="none" stroke="#e1dcc8" stroke-width="1.5" stroke-linecap="round" opacity=".7">
+                <path d="M90 140 q8 -8 16 0 q8 -8 16 0"/>
+                <path d="M130 110 q5 -5 10 0 q5 -5 10 0"/>
+              </g>
+            </svg>
+          </div>
+
+          <div class="insignia uno">
+            <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div>
+            <div>Casas en venta<small>Muy pronto</small></div>
+          </div>
+          <div class="insignia dos">
+            <div class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10Z"/></svg></div>
+            <div>Trato cercano<small>Asesoría 1 a 1</small></div>
+          </div>
+
+          <svg class="sello" viewBox="0 0 140 140" aria-hidden="true">
+            <defs><path id="circulo" d="M70 70 m-52 0 a52 52 0 1 1 104 0 a52 52 0 1 1 -104 0"/></defs>
+            <circle cx="70" cy="70" r="68" fill="#e1dcc8"/>
+            <text font-family="Montserrat, sans-serif" font-size="10.5" font-weight="500" letter-spacing="3.2" fill="#32141e">
+              <textPath href="#circulo">BIENES RAÍCES · COMPRA · VENTA · </textPath>
+            </text>
+            <use href="#logo" x="47" y="47" width="46" height="46" style="color:#32141e"/>
+          </svg>
+        </div>
+      </div>
+
+      <a href="#servicios" class="scroll-indicador" aria-label="Bajar">Descubre<span></span></a>
+    </section>
+
+    <!-- CINTA -->
+    <div class="cinta" aria-hidden="true">
+      <div class="cinta-pista">
+        <span>Compra de casas</span><span>Venta de propiedades</span><span>Asesoría personalizada</span><span>Confianza</span><span>Tu nuevo hogar</span>
+        <span>Compra de casas</span><span>Venta de propiedades</span><span>Asesoría personalizada</span><span>Confianza</span><span>Tu nuevo hogar</span>
+      </div>
+    </div>
+
+    <!-- SERVICIOS -->
+    <section class="bloque servicios" id="servicios">
+      <div class="contenedor">
+        <div class="titulo-seccion">
+          <div>
+            <span class="eyebrow revelar">Servicios</span>
+            <h2 class="revelar retraso-1">Todo lo que necesitas para <em>mudarte con tranquilidad.</em></h2>
+          </div>
+          <p class="revelar retraso-2">Cada familia es distinta. Por eso trabajo de forma personalizada, cuidando tu tiempo, tu inversión y tus expectativas.</p>
+        </div>
+
+        <div class="tarjetas">
+          <article class="tarjeta revelar">
+            <span class="num">01</span>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.6-4.6"/><path d="M7.5 11.5 10.5 9l3 2.5V14h-6Z"/></svg></div>
+            <h3>Compra tu casa</h3>
+            <p>Te ayudo a encontrar la propiedad que se ajusta a tu estilo de vida y a tu presupuesto.</p>
+            <ul><li>Búsqueda según tus necesidades</li><li>Visitas acompañadas</li><li>Negociación del precio</li></ul>
+          </article>
+          <article class="tarjeta revelar retraso-1">
+            <span class="num">02</span>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M9.5 15.5c0 1 1 1.5 2.5 1.5s2.5-.5 2.5-1.5-1-1.3-2.5-1.5-2.5-.6-2.5-1.5 1-1.5 2.5-1.5 2.5.5 2.5 1.5M12 9.8V11m0 6v1.2"/></svg></div>
+            <h3>Vende tu propiedad</h3>
+            <p>Presentamos tu casa de la mejor manera para venderla al precio justo y en menos tiempo.</p>
+            <ul><li>Valoración de la propiedad</li><li>Promoción y difusión</li><li>Atención a interesados</li></ul>
+          </article>
+          <article class="tarjeta revelar retraso-2">
+            <span class="num">03</span>
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5"/><path d="m9 14 2 2 4-4"/></svg></div>
+            <h3>Asesoría integral</h3>
+            <p>Te oriento en trámites y documentos para que tomes cada decisión con información clara.</p>
+            <ul><li>Revisión de documentación</li><li>Acompañamiento en trámites</li><li>Resolución de dudas</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section class="bloque proceso" id="proceso">
+      <div class="contenedor">
+        <div class="titulo-seccion">
+          <div>
+            <span class="eyebrow revelar">Cómo trabajo</span>
+            <h2 class="revelar retraso-1">Un proceso <em>simple</em>, de principio a fin.</h2>
+          </div>
+        </div>
+        <div class="pasos">
+          <div class="paso revelar"><div class="circulo">i</div><h3>Conversamos</h3><p>Conozco lo que buscas, tus tiempos y tu presupuesto.</p></div>
+          <div class="paso revelar retraso-1"><div class="circulo">ii</div><h3>Planeamos</h3><p>Definimos la estrategia ideal para comprar o vender.</p></div>
+          <div class="paso revelar retraso-2"><div class="circulo">iii</div><h3>Acompaño</h3><p>Visitas, negociación y trámites, siempre a tu lado.</p></div>
+          <div class="paso revelar retraso-3"><div class="circulo">iv</div><h3>Celebramos</h3><p>Recibes las llaves de tu nuevo hogar o cierras tu venta.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRASE -->
+    <section class="frase">
+      <div class="contenedor">
+        <svg class="firma revelar" style="color:#32141e"><use href="#logo"/></svg>
+        <blockquote class="revelar retraso-1">
+          Una casa son paredes y techo; un <em>hogar</em> es el lugar donde empieza tu historia.
+        </blockquote>
+        <cite class="revelar retraso-2">Yoseline Aparicio Canizalez</cite>
+      </div>
+    </section>
+
+    <!-- PRÓXIMAMENTE -->
+    <section class="bloque proximamente" id="proximamente">
+      <div class="contenedor">
+        <div class="aviso revelar">
+          <div>
+            <span class="eyebrow">Novedades</span>
+            <h2>Estamos preparando <em>algo especial</em> para ti.</h2>
+            <p>Muy pronto podrás ver aquí las propiedades disponibles, fotografías, ubicaciones y todas las formas de contacto.</p>
+            <div class="estado">Sitio en construcción</div>
+          </div>
+          <div class="progreso">
+            <div class="fila"><span>Diseño</span><span>90%</span></div>
+            <div class="barra"><i style="--p:90%"></i></div>
+            <div class="fila"><span>Catálogo de casas</span><span>40%</span></div>
+            <div class="barra"><i style="--p:40%"></i></div>
+            <div class="fila"><span>Contacto en línea</span><span>25%</span></div>
+            <div class="barra"><i style="--p:25%"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="contenedor">
+      <div class="pie">
+        <a href="#inicio" class="marca">
+          <svg><use href="#logo"/></svg>
+          <div class="marca-texto"><strong>Yoseline Aparicio Canizalez</strong><span>Bienes Raíces</span></div>
+        </a>
+        <p class="lema">Te ayudo a encontrar el lugar donde quieres vivir.</p>
+        <nav><a href="#servicios">Servicios</a><a href="#proceso">Proceso</a><a href="#proximamente">Novedades</a></nav>
+      </div>
+      <div class="legal">
+        <span>&copy; <span id="anio">2026</span> Yoseline Aparicio Canizalez. Todos los derechos reservados.</span>
+        <span>yoselineca.com</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('anio').textContent = new Date().getFullYear();
+
+    const cabecera = document.getElementById('cabecera');
+    const alDesplazar = () => cabecera.classList.toggle('fijo', window.scrollY > 40);
+    window.addEventListener('scroll', alDesplazar, { passive: true });
+    alDesplazar();
+
+    const objetivos = document.querySelectorAll('.revelar');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entradas) => {
+        entradas.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      objetivos.forEach((el) => io.observe(el));
+    } else {
+      objetivos.forEach((el) => el.classList.add('visible'));
+    }
+  </script>
+</body>
+</html>

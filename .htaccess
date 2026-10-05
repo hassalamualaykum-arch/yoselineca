@@ -4,5 +4,5 @@ RedirectMatch 404 /\.git
   Require all denied
 </FilesMatch>
 
-DirectoryIndex index.php index.html
+DirectoryIndex index.html
 Options -Indexes

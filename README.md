@@ -2,7 +2,7 @@
 
 Sitio web de **Yoseline Aparicio Canizalez** — Bienes Raíces (compra y venta de casas).
 
-Estado actual: página temporal "En construcción" (`index.php`).
+Estado actual: página de presentación estática (`index.html`), sin PHP para que funcione también en GitHub Pages.
 
 ## Paleta de colores
 
